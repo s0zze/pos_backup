@@ -74,9 +74,6 @@
 						<th scope="col" class="column-text">Cena</th>
 						<th scope="col" class="column-text">Należność</th>
 						<th scope="col" class="column-text">Rabat</th>
-
-
-
 					</tr>
 				</thead>
 				<?php
@@ -104,7 +101,11 @@
 				<tbody>
 					<?php foreach($query->fetchAll(PDO::FETCH_ASSOC) as $row) : ?>
 					<tr>
-					    <td><?php echo $row['reciept_no']; ?></td>
+					    <td>
+								<?php
+								echo intval($row['reciept_no']); 
+								?>
+							</td>
 					    <td>
 								<?php
 								//echo $row['product_id'];
@@ -119,7 +120,12 @@
 								?>
 							</td>
 					    <td><?php echo $row['price']; ?> PLN</td>
-					    <td><?php echo $row['total']; ?> PLN</td>
+					    <td>
+								<?php
+
+								print floatval($row['price']) * intval($row['qty']);
+								?>
+								PLN</td>
 							<td><?php echo $row['discount']; ?> PLN</td>
 					</tr>
 					<?php endforeach;?>
